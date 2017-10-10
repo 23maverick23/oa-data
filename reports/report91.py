@@ -2,7 +2,7 @@ from collections import OrderedDict
 from flask import (jsonify)
 from . import get_report_by_id
 
-json_data = get_report_by_id(91).json()
+json_data = get_report_by_id(91)
 value = json_data['value']
 
 # TODO: This puts the count before the stage name, which is wrong

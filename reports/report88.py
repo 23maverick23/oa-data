@@ -5,7 +5,7 @@ from flask import (jsonify)
 from operator import itemgetter
 from . import get_report_by_id
 
-json_data = get_report_by_id(88).json()
+json_data = get_report_by_id(88)
 value = json_data['value']
 
 FLD = {
