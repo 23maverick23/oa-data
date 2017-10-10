@@ -159,7 +159,7 @@
 
     function fetchReport88() {
         $.ajax({
-            url: "http://127.0.0.1:5000/api/report88",
+            url: "https://oa-data.herokuapp.com/api/report88",
             type: 'GET',
             success: function(response) {
                 drawReport88(response[0], response[1])
@@ -290,7 +290,7 @@
 
     function fetchReport91() {
         $.ajax({
-            url: "http://127.0.0.1:5000/api/report91",
+            url: "https://oa-data.herokuapp.com/api/report91",
             type: 'GET',
             success: function(response) {
                 var template = $('#client-template').html();
