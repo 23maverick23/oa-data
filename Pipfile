@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+"aniso8601" = "*"
+certifi = "*"
+chardet = "*"
+click = "*"
+flask = "*"
+"flask-restful" = "*"
+idna = "*"
+itsdangerous = "*"
+"jinja2" = "*"
+markupsafe = "*"
+"python-dateutil" = "*"
+pytz = "*"
+requests = "*"
+"urllib3" = "*"
+werkzeug = "*"
+
+
+[dev-packages]
