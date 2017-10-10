@@ -5,9 +5,7 @@ from flask import (jsonify)
 from . import get_report_by_id
 
 json_data = get_report_by_id(87)
-print('\nraw -->> ', json_data)
 value = json_data['value']
-print('\nvalue -->> ', json_data)
 
 df = pd.DataFrame(value)
 grouped = df.groupby('Employee - Job code').mean().reset_index()
