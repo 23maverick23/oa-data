@@ -21,7 +21,7 @@ data = [{'name': job, 'data': grouped_json['data'][i]} for i, job in enumerate(g
 
 final_data = {'columns': grouped_json['columns'], 'values': data}
 
-print(final_data)
+# print(final_data)
 
 def get_data():
     return final_data
