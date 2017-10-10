@@ -1,7 +1,7 @@
 from flask import (Flask, render_template, request, jsonify)
 from flask_restful import (Resource, Api)
 
-from reports import report83, report85, report87, report88, report91
+from .reports import report83, report85, report87, report88, report91
 
 
 app = Flask(__name__)
