@@ -1,1 +1,1 @@
-web: gunicorn gettingstarted.wsgi --log-file -
+web: gunicorn run:app -b 0.0.0.0:5000 --log-file -
