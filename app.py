@@ -34,4 +34,4 @@ api.add_resource(Report88, '/api/report88')
 api.add_resource(Report91, '/api/report91')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=5000)
