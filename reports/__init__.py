@@ -13,9 +13,9 @@ def get_report_by_id(int):
     try:
         if int:
             r = requests.get(REPORT_URL + str(int), auth=(OA_USER, OA_PASS))
-            # return r.json()
+            return r.json()
             print(r.text)
-            return json.loads(r.text)
+            # return json.loads(r.text)
             # return json.load(codecs.decode(r.text, 'utf-8'))
         else:
             return None

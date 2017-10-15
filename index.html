@@ -23,7 +23,9 @@
             <a href="#home" class="active item"><i class="home icon"></i> Home</a>
             <a href="#chart_report87" class="item"><i class="line chart icon"></i> Line Chart</a>
             <a href="#chart_report88" class="item"><i class="bar chart icon"></i> Drilldown</a>
+            <a href="#chart_report9394" class="item"><i class="pie chart icon"></i> Combination</a>
             <a href="#chart_report91" class="item"><i class="area chart icon"></i> Sparkline</a>
+            <a href="#project-card-list" class="item"><i class="grid layout icon"></i> Card View</a>
             <div class="right menu">
                 <div class="item">
                     <a href="https://www.odata.org" class="ui button" target="_blank">OData Docs</a>
@@ -40,7 +42,9 @@
         <a href="#home" class="active item"><i class="home icon"></i> Home</a>
         <a href="#chart_report87" class="item"><i class="line chart icon"></i> Line Chart</a>
         <a href="#chart_report88" class="item"><i class="bar chart icon"></i> Drilldown</a>
+        <a href="#chart_report9394" class="item"><i class="pie chart icon"></i> Combination</a>
         <a href="#chart_report91" class="item"><i class="area chart icon"></i> Sparkline</a>
+        <a href="#project-card-list" class="item"><i class="grid layout icon"></i> Card View</a>
         <a href="https://www.odata.org" class="item" target="_blank">OData Docs</a>
         <a href="https://trunk.qastack.openair1.com/index.pl" class="item" target="_blank">Trunk Sign In</a>
     </div>
@@ -58,7 +62,9 @@
                     <a href="#home" class="active item"><i class="home icon"></i> Home</a>
                     <a href="#chart_report87" class="item"><i class="line chart icon"></i> Line Chart</a>
                     <a href="#chart_report88" class="item"><i class="bar chart icon"></i> Drilldown</a>
+                    <a href="#chart_report9394" class="item"><i class="pie chart icon"></i> Combination</a>
                     <a href="#chart_report91" class="item"><i class="area chart icon"></i> Sparkline</a>
+                    <a href="#project-card-list" class="item"><i class="grid layout icon"></i> Card View</a>
                     <div class="right item">
                         <a href="https://www.odata.org" class="ui inverted button" target="_blank">OData Docs</a>
                         <a href="https://trunk.qastack.openair1.com/index.pl" class="ui inverted button" target="_blank">Trunk Sign In</a>
@@ -69,7 +75,7 @@
             <div class="ui text container">
                 <h1 class="ui inverted header">OpenAir BI Connector</h1>
                 <h2>Get the most out of your OpenAir reports and Business Intelligence tools with OData!</h2>
-                <a href="#chart_report87" class="ui huge primary button">Take a look <i class="unhide icon"></i></a>
+                <a href="#chart_report87" class="ui huge primary button">View some examples</a>
             </div>
 
         </div>
@@ -96,10 +102,22 @@
             </div>
         </div>
 
+        <!-- Report9394 -->
+        <div class="ui vertical stripe segment">
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <div id="chart_report9394"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Report 91 -->
         <div class="ui vertical stripe segment">
             <div class="ui middle aligned stackable grid container">
                 <div class="row">
+                    <h3 class="ui center aligned header">Client Profitability</h3>
                     <table class="ui celled table" id="chart_report91">
                         <thead>
                             <tr>
@@ -131,8 +149,54 @@
             </div>
         </div>
 
+        <!-- Report -->
+        <div class="ui vertical stripe segment">
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <h3 class="ui center aligned header">Active Projects</h3>
+                    <div id="project-card-list" class="ui three cards"></div>
+                    <script id="project-template" type="text/template">
+                        {{#value}}
+                        <div class="card">
+                            <div class="content">
+                                <div class="header">{{ Name }}</div>
+                                <div class="meta">{{ Client }}</div>
+                                <div class="description">
+                                    
+                                </div>
+                                <div class="ui teal progress" data-percent="{{ % Complete }}">
+                                    <div class="bar">
+                                        <div class="progress"></div>
+                                    </div>
+                                    <div class="label">% Complete</div>
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <span class="left floated">
+                                    Start: {{ Scheduled project start date }}
+                                </span>
+                                <span class="right floated">
+                                    Finish: {{ Calculated project finish date }}
+                                </span>
+                            </div>
+                            <div class="extra content">
+                                <span class="left floated">
+                                    Hours: {{ Planned hours }}
+                                </span>
+                                <span class="right floated">
+                                    Budget: ${{ Budget (USD) }}
+                                </span>
+                            </div>
+                        </div>
+                        {{/value}}
+                    </script>
+                </div>                
+            </div>            
+        </div>
+
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/visibility.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/sidebar.min.js"></script>

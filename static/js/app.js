@@ -11,6 +11,9 @@
         fetchReport88();
 
         fetchReport91();
+        fetchReport92();
+
+        fetchReports9394();
     });
 
     function createSmoothScrollLinks() {
@@ -159,7 +162,7 @@
 
     function fetchReport88() {
         $.ajax({
-            url: "https://oa-data.herokuapp.com/api/report88",
+            url: "http://127.0.0.1:5000/api/report88",
             type: 'GET',
             success: function(response) {
                 drawReport88(response[0], response[1])
@@ -290,7 +293,7 @@
 
     function fetchReport91() {
         $.ajax({
-            url: "https://oa-data.herokuapp.com/api/report91",
+            url: "http://127.0.0.1:5000/api/report91",
             type: 'GET',
             success: function(response) {
                 var template = $('#client-template').html();
@@ -455,6 +458,162 @@
             }
         }
         doChunk();
+    }
+
+    function fetchReport92() {
+        $.ajax({
+            url: "http://127.0.0.1:5000/api/report92",
+            type: 'GET',
+            success: function(response) {
+                var template = $('#project-template').html();
+                var html = Mustache.to_html(template, response);
+                $('#project-card-list').html(html);
+                // drawReport92();
+                $('.ui.progress').progress('reset').progress();
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+    function fetchReports9394() {
+        var report93, report94;
+
+        $.when(
+            $.ajax({
+                url: "http://127.0.0.1:5000/api/report93",
+                type: 'GET',
+                success: function(response) {
+                    report93 = response;
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            }),
+
+            $.ajax({
+                url: "http://127.0.0.1:5000/api/report94",
+                type: 'GET',
+                success: function(response) {
+                    report94 = response;
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+
+        ).then(function() {
+
+            drawReports9394(
+                report93.keys,
+                report93.values,
+                report94.keys,
+                report94.values
+            )
+
+        });
+    }
+
+    function drawReports9394(keyA, dataA, keyB, dataB) {
+        var categories = _.union(keyA, keyB);
+        var dataACopy = _.clone(dataA);
+        var dataBCopy = _.clone(dataB);
+        var finalA = dataA.concat(dataBCopy.fill(null).slice(0, -1));
+        var finalB = dataACopy.fill(null).slice(0, -1).concat(dataB);
+
+        function sum(arr) { 
+            // returns the sum total of all values in the array
+            return _.reduce(arr, function(memo, num) { return memo + num}, 0); 
+        }
+
+        Highcharts.chart('chart_report9394', {
+            chart: {
+                type: 'area'
+            },
+            title: {
+                text: 'Actual + Forecasted Revenue'
+            },
+            subtitle: {
+                text: 'Rolling +/- 12 Months'
+            },
+            xAxis: {
+                allowDecimals: false,
+                categories: categories,
+                labels: {
+                    formatter: function () {
+                        return this.value; // clean, unformatted number for year
+                    }
+                },
+                plotLines: [{
+                    color: '#FF0000',
+                    value: dataA.length - 1,
+                    width: 2,
+                    zIndex: 5,
+                    label: {
+                        text: 'This Month'
+                    }
+                }]
+            },
+            yAxis: {
+                title: {
+                    text: 'Revenue (USD)'
+                },
+                labels: {
+                    format: '${value:,.0f}'
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>${point.y:,.0f}</b>'
+            },
+            plotOptions: {
+                area: {
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                    }
+                }
+            },
+            labels: {
+                items: [{
+                    html: 'Total Revenue',
+                    style: {
+                        left: '20px',
+                        top: '5px',
+                        color: 'black'
+                    }
+                }]
+            },
+            series: [{
+                name: 'Actual',
+                data: finalA
+            }, {
+                name: 'Forecast',
+                data: finalB
+            }, {
+                type: 'pie',
+                name: 'Total Revenue',
+                data: [{
+                    name: 'Actual Revenue',
+                    y: sum(dataA)
+                }, {
+                    name: 'Forecast Revenue',
+                    y: sum(dataB)
+                }],
+                center: [40, 40],
+                size: 65,
+                showInLegend: false,
+                dataLabels: {
+                    enabled: false
+                }
+            }]
+        });
     }
 
 })();
