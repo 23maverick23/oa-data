@@ -26,10 +26,8 @@
             <a href="#chart_report9394" class="item"><i class="pie chart icon"></i> Combination</a>
             <a href="#chart_report91" class="item"><i class="area chart icon"></i> Sparkline</a>
             <a href="#project-card-list" class="item"><i class="grid layout icon"></i> Card View</a>
+            <a href="#chart_report95" class="item"><i class="warning sign icon"></i> Wall of Shame</a>
             <div class="right menu">
-                <div class="item">
-                    <a href="https://www.odata.org" class="ui button" target="_blank">OData Docs</a>
-                </div>
                 <div class="item">
                     <a href="https://trunk.qastack.openair1.com/index.pl" class="ui primary button" target="_blank">Trunk Sign In</a>
                 </div>
@@ -45,7 +43,7 @@
         <a href="#chart_report9394" class="item"><i class="pie chart icon"></i> Combination</a>
         <a href="#chart_report91" class="item"><i class="area chart icon"></i> Sparkline</a>
         <a href="#project-card-list" class="item"><i class="grid layout icon"></i> Card View</a>
-        <a href="https://www.odata.org" class="item" target="_blank">OData Docs</a>
+        <a href="#chart_report95" class="item"><i class="warning sign icon"></i> Wall of Shame</a>
         <a href="https://trunk.qastack.openair1.com/index.pl" class="item" target="_blank">Trunk Sign In</a>
     </div>
 
@@ -65,8 +63,8 @@
                     <a href="#chart_report9394" class="item"><i class="pie chart icon"></i> Combination</a>
                     <a href="#chart_report91" class="item"><i class="area chart icon"></i> Sparkline</a>
                     <a href="#project-card-list" class="item"><i class="grid layout icon"></i> Card View</a>
+                    <a href="#chart_report95" class="item"><i class="warning sign icon"></i> Wall of Shame</a>
                     <div class="right item">
-                        <a href="https://www.odata.org" class="ui inverted button" target="_blank">OData Docs</a>
                         <a href="https://trunk.qastack.openair1.com/index.pl" class="ui inverted button" target="_blank">Trunk Sign In</a>
                     </div>
                 </div>
@@ -194,6 +192,47 @@
             </div>            
         </div>
 
+        <!-- Report 95 -->
+        <div class="ui vertical stripe segment">
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <h3 class="ui center aligned header">
+                        Timesheet Wall of Shame
+                        <div class="sub header" id="shame-header"></div>
+                        <script id="shame-header-template" type="text/template">
+                            Missing or Open Timesheets for the {{ title }}
+                        </script>
+                    </h3>
+                    <table class="ui sortable red celled table" id="chart_report95">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Employee ID</th>
+                                <th>Email</th>
+                                <th>Manager</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shame-table"></tbody>
+                        <script id="shame-template" type="text/template">
+                        {{#data}}
+                        <tr class="{{ Class }}">
+                            <td>{{ Employee }}</td>
+                            <td>{{ Employee ID }}</td>
+                            <td>{{ Email }}</td>
+                            <td>{{ Manager }}</td>
+                            <td>{{ Department }}</td>
+                            <td>{{ Week }}</td>
+                        </tr>
+                        {{/data}}
+                        </script>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
@@ -208,6 +247,7 @@
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
+    <script src="static/js/semantic-sortable.js"></script>
     <script src="static/js/app.js"></script>
 </body>
 </html>

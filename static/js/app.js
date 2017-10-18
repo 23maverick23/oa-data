@@ -14,6 +14,7 @@
         fetchReport92();
 
         fetchReports9394();
+        fetchReport95();
     });
 
     function createSmoothScrollLinks() {
@@ -613,6 +614,26 @@
                     enabled: false
                 }
             }]
+        });
+    }
+
+    function fetchReport95() {
+        $.ajax({
+            url: "http://127.0.0.1:5000/api/report95",
+            type: 'GET',
+            success: function(response) {
+                var template1 = $('#shame-header-template').html();
+                var html1 = Mustache.to_html(template1, response);
+                $('#shame-header').html(html1);
+
+                var template2 = $('#shame-template').html();
+                var html2 = Mustache.to_html(template2, response);
+                $('#shame-table').html(html2);
+                $('#chart_report95').tablesort();
+            },
+            error: function(error) {
+                console.log(error);
+            }
         });
     }
 
